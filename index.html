@@ -1,0 +1,60 @@
+<!-- verify.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Verification</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #030014;
+    }
+    #status {
+      font-size: 1.5rem;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="status">Verifying...</div>
+
+  <script type="module">
+    import { Client, Account } from "https://cdn.jsdelivr.net/npm/appwrite@13.0.0/+esm";
+
+    const APPWRITE_ENDPOINT = 'https://syd.cloud.appwrite.io/v1';
+    const APPWRITE_PROJECT_ID = '688df29e002b53fd5235';
+
+    const client = new Client();
+    client
+      .setEndpoint(APPWRITE_ENDPOINT)
+      .setProject(APPWRITE_PROJECT_ID);
+
+    const account = new Account(client);
+
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get("userId");
+    const secret = params.get("secret");
+    const statusEl = document.getElementById("status");
+
+    if (userId && secret) {
+      account.updateVerification(userId, secret)
+        .then(() => {
+          statusEl.textContent = "✅ Email verified successfully!";
+        })
+        .catch(() => {
+          statusEl.textContent = "❌ Verification failed. Please try again.";
+        });
+    } else {
+      statusEl.textContent = "❌ Missing verification parameters.";
+    }
+  </script>
+</body>
+</html>
