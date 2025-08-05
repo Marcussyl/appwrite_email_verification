@@ -4,9 +4,7 @@ This is a simple static frontend for handling email verification using [Appwrite
 
 ## 🚀 Live Demo
 
-🔗 [View the deployed site](https://github.com/Marcussyl/appwrite_email_verification/verify.html)
-
-> Replace with your actual GitHub Pages URL.
+🔗 [View the deployed site]([https://github.com/Marcussyl/appwrite_email_verification/verify.html](https://marcussyl.github.io/appwrite_email_verification/verify.html))
 
 ---
 
@@ -16,4 +14,3 @@ This is a simple static frontend for handling email verification using [Appwrite
 - **Appwrite Web SDK**
 - **GitHub Pages** for hosting
 - **GitHub Actions** for automatic deployment
-- 
